@@ -10,6 +10,8 @@ const path = require ('path');
 //const IP = "192.168.1.41";
 const IP = "localhost"; // on server
 
+const PORT = process.env.PORT || 3000;
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -246,6 +248,6 @@ app.route('/map/track/:track id')
         let title = "GPS tracking";
         res.render('./track map', {title: title, trackID: req.params.trackID});
     });
-app.listen(3000, function () {
-    console.log('Server listening on port 3000')
+app.listen(PORT, function () {
+    console.log('Server listening on port ${PORT}')
     })
