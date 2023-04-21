@@ -67,8 +67,8 @@ let autoLogin = (req, callback) => {
             email: "test1@test.com",
             password: "test"
         }
-      };
-      
+    };
+    
     request(options, function (error, response, body) {
         //console.log(body);
         
@@ -93,6 +93,8 @@ let auth = (req, res, next) => {
         res.redirect('/login');
     }
 };
+
+
 
 let nonAuth = (req, res, next) => {
     if (req.session.user && req.cookies.user_sid) {
@@ -127,13 +129,13 @@ app.route('/')
 
 app.route('/signup')
     .get(nonAuth, (req, res) => {
-        let title = "Rejestracja";
+        let title = "Registration";
         let form = {add:false, errorMsg: "", email:"", username:""}
 
         res.render('./signup', params({title: title, form: form}));
     })
     .post(nonAuth, (req, res) => {
-        let title = "Rejestracja";
+        let title = "Registration";
         let form = {add:false, errorMsg: "", email: req.body.email, username: req.body.username}
 
         var options = {
@@ -145,7 +147,7 @@ app.route('/signup')
                 password: req.body.password,
                 password2: req.body.password2,
             }
-          };
+        };
 
         request(options, function (error, response, body) {
             console.log(body);
@@ -154,10 +156,10 @@ app.route('/signup')
                 form.add = true;
             }
             else if(!error) {
-                form.errorMsg = body.message ? body.message : "Błąd";
+                form.errorMsg = body.message ? body.message : "Mistake";
             }
             else {
-                form.errorMsg = "Błąd: " + error;
+                form.errorMsg = "Mistake:" + error;
             }
             res.render('./signup', params({title: title, form: form}));
         });
@@ -167,13 +169,13 @@ app.route('/signup')
 
 app.route('/login')
     .get(nonAuth, (req, res) => {
-        let title = "Logowanie";
+        let title = "Login";
         let form = {errorMsg: "", email:""}
 
         res.render('./login', params({title: title, form: form}));
     })
     .post(nonAuth, (req, res) => {
-        let title = "Logowanie";
+        let title = "Login";
         let form = {errorMsg: "", email: req.body.email}
 
         var options = {
@@ -183,7 +185,7 @@ app.route('/login')
                 email: req.body.email,
                 password: req.body.password
             }
-          };
+        };
 
         request(options, function (error, response, body) {
             console.log(body);
@@ -197,11 +199,11 @@ app.route('/login')
                 
             }
             else if (!error) {
-                form.errorMsg = "Niepoprawny email lub hasło";
+                form.errorMsg = "Incorrect e-mail or password";
                 res.render('./login', params({title: title, form: form}));
             }
             else {
-                form.errorMsg = "Błąd: " + error;
+                form.errorMsg = "Mistake:" + error;
                 res.render('./login', params({title: title, form: form}));
             }
         });
@@ -209,7 +211,7 @@ app.route('/login')
 
 app.route('/logout')
     .get(auth, (req, res) => {
-        res.clearCookie('user_sid');
+        res.clearCookie('User sid');
         res.redirect('/');
     });
 
@@ -227,22 +229,22 @@ app.route('/map')
         res.render('./map', {title: title});
     });
 
-app.route('/map/user/:userID')
+app.route('/map/user/:user id')
     .get(auth, (req, res) => {
         let title = "GPS tracking";
-        res.render('./userMap', {title: title, userID: req.params.userID});
+        res.render('./user map', {title: title, userID: req.params.userID});
     });
 
-app.route('/map/user/:userID/tracks')
+app.route('/map/user/:user id/tracks')
     .get(auth, (req, res) => {
         let title = "GPS tracking";
-        res.render('./userTracksMap', {title: title, userID: req.params.userID});
+        res.render('./user tracks map', {title: title, userID: req.params.userID});
     });
 
-app.route('/map/track/:trackID')
+app.route('/map/track/:track id')
     .get(auth, (req, res) => {
         let title = "GPS tracking";
-        res.render('./trackMap', {title: title, trackID: req.params.trackID});
+        res.render('./track map', {title: title, trackID: req.params.trackID});
     });
 app.listen(3000, function () {
     console.log('Server listening on port 3000')
