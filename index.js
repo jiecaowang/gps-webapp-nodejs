@@ -249,5 +249,5 @@ app.route('/map/track/:track id')
         res.render('./track map', {title: title, trackID: req.params.trackID});
     });
 app.listen(PORT, function () {
-    console.log('Server listening on port ${PORT}')
+        console.log(`Server listening on port ${PORT}`);
     })
