@@ -8,7 +8,7 @@
           <% include tiles/sidebar %>
       </div>
       <div class="col-md-5">
-          <h3 class="my-4">Logowanie</h3>
+          <h3 class="my-4">Login</h3>
           <% if(form.errorMsg !== "") { %>
             <div class="alert alert-danger">
                 <%= form.errorMsg %><br />
@@ -20,10 +20,10 @@
                 <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="<%= form.email %>">
             </div>
             <div class="form-group">
-                <label for="password">Hasło</label>
+                <label for="password">Password</label>
                 <input type="password" name="password" class="form-control" id="password" placeholder="Hasło">
             </div>
-            <button type="submit" class="btn btn-primary">Zaloguj się</button>
+            <button type="submit" class="btn btn-primary">Log in</button>
           </form>
       
       </div>

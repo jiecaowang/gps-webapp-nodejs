@@ -14,25 +14,25 @@
     <div class="panel-content">
     <div class="track-list">
       <div class="header">
-        Zapisanych tras:&nbsp;<span id="trackCount">0</span>
+        Saved routes:&nbsp;<span id="trackCount">0</span>
       </div>
-      <div class="empty-list">Brak zapisanych tras</div>
+      <div class="empty-list">No saved routes</div>
     </div>
     <div class="track-info">
       <div class="track-info-wrap">
       <div class="track-details">
-        <div class="det"><div class="det-name">Początek:</div><div id="startTime" class="det-value"></div></div>
-        <div class="det"><div class="det-name">Koniec:</div><div id="finishTime" class="det-value"></div></div>
-        <div class="det"><div class="det-name">Dystans:</div><div id="distance" class="det-value"></div></div>
+        <div class="det"><div class="det-name">Beginning:</div><div id="startTime" class="det-value"></div></div>
+        <div class="det"><div class="det-name">End:</div><div id="finishTime" class="det-value"></div></div>
+        <div class="det"><div class="det-name">Distance:</div><div id="distance" class="det-value"></div></div>
 
       </div>
       <div class="form-group track-map-form">
-        <label for="track-map-input">Bezpośredni link</label>
+        <label for="track-map-input">direct link</label>
         <input type="text" name="track-map-input" id="trackMapLink" class="form-control track-map-input" value="">
       </div>
       <div class="track-map-link">
-        <button type="button" class="btn btn-link" id="copyTrackMapLink">Skopiuj link</button> 
-        <a id="openTrackMapLink" href="#" >Otwórz link</a>
+        <button type="button" class="btn btn-link" id="copyTrackMapLink">Copy link</button> 
+        <a id="openTrackMapLink" href="#" >Open the link</a>
       </div>
     </div>
     </div>
@@ -279,8 +279,8 @@ $(function() {
     if(polyline)
       polyline.setMap(null);
 
-    markerStart = createMarker(track.latLongs[0], markerColors[0], "Początek")
-    markerFinish = createMarker(track.latLongs[track.latLongs.length-1], markerColors[0], "Koniec")
+    markerStart = createMarker(track.latLongs[0], markerColors[0], "Beginning")
+    markerFinish = createMarker(track.latLongs[track.latLongs.length-1], markerColors[0], "End")
     polyline = createPolyline(track.latLongs, markerColors[0].hex[0]);
     
     map.fitBounds(bounds);
